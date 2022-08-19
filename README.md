@@ -1,106 +1,143 @@
-# Проект по автоматизации тестирования для Acron
-## <a target="_blank" href="https://www.acron.ru/">Веб сайт Acron</a>
+# UI тесты сайта axamit.com
 
-## :shinto_shrine: Содержание:
+## :page_with_curl:    Содержание
 
-- <a href="#shinto_shrine-технологии-и-инструменты">Технологии и инструменты</a>
-- <a href="#shinto_shrine-реализованные-проверки">Реализованные проверки</a>
-- <a href="#shinto_shrine-сборка-в-Jenkins">Сборка в Jenkins</a>
-- <a href="#shinto_shrine-запуск-из-терминала">Запуск из терминала</a>
-- <a href="#shinto_shrine-allure-отчет">Allure отчет</a>
-- <a href="#shinto_shrine-интеграция-с-allure-testops">Интеграция с Allure TestOps</a>
-- <a href="#shinto_shrine-интеграция-с-jira">Интеграция с Jira</a>
-- <a href="#shinto_shrine-отчет-в-telegram">Отчет в Telegram</a>
-- <a href="#shinto_shrine-видео-примеры-прохождения-тестов">Видео примеры прохождения тестов</a>
+➠ [Покрытый функционал](#globe_with_meridians-покрытый-функционал)
 
-## :shinto_shrine: Технологии и инструменты
+➠ [Технологический стек](#computer-технологический-стек)
+
+➠ [Запуск тестов из терминала](#technologist-запуск-тестов-из-терминала)
+
+➠ [Удаленный запуск тестов](#удаленный-запуск-тестов)
+
+➠ [Сборка в Jenkins](#-главная-страница-сборки-Jenkins)
+
+➠ [Отчет о результатах тестирования в Allure Report](#-отчет-о-результатах-тестирования-в-allure-report)
+
+➠ [Уведомления в Telegram с использованием бота](#-уведомления-в-telegram-с-использованием-бота)
+
+➠ [Пример запуска теста в Selenoid](#-пример-запуска-теста-в-selenoid)
+## <a name="globe_with_meridians-покрытый-функционал"></a>:globe_with_meridians: Покрытый функционал
+
+### UI
+
+- [x] Проверка отсутствия ошибок в журнале консоли главной страницы
+- [x] Проверка отображения лого компании на главной странице
+- [x] Проверка работы поиска 
+- [x] Проверка отображения вакансии
+- [x] Проверка отображения вкладки All
+
+## :computer: Технологический стек
+
 <p align="center">
 <img width="6%" title="IntelliJ IDEA" src="images/logo/Intelij_IDEA.svg">
 <img width="6%" title="Java" src="images/logo/Java.svg">
-<img width="6%" title="Selenide" src="images/logo/Selenide.svg">
-<img width="6%" title="Selenoid" src="images/logo/Selenoid.svg">
-<img width="6%" title="Allure Report" src="images/logo/Allure_Report.svg">
-<img width="6%" title="Gradle" src="images/logo/Gradle.svg">
 <img width="6%" title="JUnit5" src="images/logo/JUnit5.svg">
+<img width="6%" title="Selenide" src="images/logo/Selenide.svg">
+<img width="6%" title="Gradle" src="images/logo/Gradle.svg">
 <img width="6%" title="GitHub" src="images/logo/GitHub.svg">
 <img width="6%" title="Jenkins" src="images/logo/Jenkins.svg">
+<img width="6%" title="Selenoid" src="images/logo/Selenoid.svg">
+<img width="6%" title="Allure Report" src="images/logo/Allure_Report.svg">
 <img width="6%" title="Telegram" src="images/logo/Telegram.svg">
 </p>
 
-## :shinto_shrine: Реализованные проверки
-- Авторизация в маркете (тесты с PageObjects)
-- Открытие официальных источников в социальных сетях (Параметризированные тесты)
-- Открытие страницы с поиском по сайту
-- Поиск и выбор вакансии
-- Проверка пункта меню "Купить удобрения"
-- Проверка наличия на странице информации с биржи
+```mermaid        
+    stateDiagram-v2
+        State1: START
+        State2: Java & IntelliJ IDEA
+        State3: Selenide & JUnit5
+        State4: Gradle
+        State5: GitHub
+        State6: Jenkins
+        State7: Selenoid
+        State8: Allure Report
+        State9: Telegram
+        State10: STOP
+        State1 --> State2
+        State2 --> State3
+        State3 --> State4
+        State4 --> State5
+        State5 --> State6
+        State6 --> State7
+        State7 --> State8
+        State8 --> State9
+        State9 --> State10
+        note right of State2 : Работа с кодом
+        note left of State3 : Фреймворки
+        note right of State4 : Сборка проекта
+        note left of State5 : Система контроля версий и хостинг проекта
+        note right of State6 : Параметризация и запуск сборки
+        note left of State7 : Контейнеризация
+        note right of State8 : Отчётность
+        note left of State9 : Уведомления
+```
+## :technologist: Запуск тестов из терминала
 
-## :shinto_shrine: Сборка в Jenkins
-### <a target="_blank" href="https://jenkins.autotests.cloud/job/011-katana_sword_party-13-autotests/">Сборка в Jenkins</a>
-<p align="center">
-<img title="Jenkins Dashboard" src="images/screenshots/jenkins-dashboard.png">
-</p>
+### Локальный запуск тестов
 
-### Параметры сборки в Jenkins:
-Сборка в Jenkins
-
-- browser (браузер, по умолчанию chrome)
-- version (версия браузера, по умолчанию 99.0)
-- size (размер окна браузера, по умолчанию 1920x1080)
-- threads (количество потоков)
-- необходимо добавить файл credentials.properties (содержащий в себе логины и пароли, пример в папке resources)
-
-## :shinto_shrine: Запуск из терминала
-Локальный запуск:
 ```
 gradle clean test
 ```
 
-Удаленный запуск:
+### Удаленный запуск тестов
+
 ```
 clean
 test
 -Dbrowser=${BROWSER}
--Dversion=${VERSION}
--Dsize=${BROWSER_SIZE}
--Dthreads=${THREADS}
+-Dsize=${SIZE}
 ```
 
-## :shinto_shrine: Allure отчет
-- ### Главный экран отчета
+### Параметры сборки
+
+> <code>BROWSER</code> – браузер, в котором будут выполняться тесты (_по умолчанию - <code>chrome</code>_).
+>
+> <code>BROWSER_SIZE</code> – размер окна браузера, в котором будут выполняться тесты (_по умолчанию - <code>1920x1080</code>_).
+>
+> <code>ENVIRONMENT</code> – версия окружения для отчёта в Telegram.
+>
+> <code>PROJECT_NAME</code> – имя проекта для отчёта в Telegram.
+
+## <img width="4%" title="Jenkins" src="images/logo/Jenkins.svg"> Главная страница сборки [Jenkins](https://jenkins.autotests.cloud/job/012-SergeevSS90-unit13-Wildberries_tests/)
+
 <p align="center">
-<img title="Allure Overview Dashboard" src="images/screenshots/allure-main-page.png">
+  <img src="images/screenshots/Jenkins.PNG">
 </p>
 
-- ### Страница с проведенными тестами
+## <img width="4%" title="Allure Report" src="images/logo/Allure_Report.svg"> Отчет о результатах тестирования в [Allure Report](https://jenkins.autotests.cloud/job/012-SergeevSS90-unit13-Wildberries_tests/24/allure/)
+
+### :pushpin: Главная страница Allure-отчета
+
 <p align="center">
-<img title="Allure Test Page" src="images/screenshots/allure-test-page.png">
+<img title="Allure Overview" src="images/screenshots/allure_overview.PNG">
 </p>
 
-## :shinto_shrine: Интеграция с Allure TestOps
-- ### Экран с результатами запуска тестов
+### :pushpin: Страница с тестами
+
 <p align="center">
-<img title="TestOps Launch Page" src="images/screenshots/test-ops-launch-page.png">
+<img title="Allure Behaviors" src="images/screenshots/allure_behaviors.PNG">
 </p>
 
-- ### Страница с тестами в TestOps
+### :pushpin: Основной дашборд
+
 <p align="center">
-<img title="TestOps tests page" src="images/screenshots/test-ops-tests-page.png">
+<img title="Allure Overview Dashboard" src="images/screenshots/allure_overview_dashboard.PNG">
 </p>
 
-## :shinto_shrine: Интеграция с Jira
-- ### Страница с задачей в Jira
+## <img width="4%" title="Telegram" src="images/logo/Telegram.svg"> Уведомления в Telegram с использованием бота
+
+> После завершения сборки бот, созданный в <code>Telegram</code>, автоматически обрабатывает и отправляет сообщение с отчетом.
 <p align="center">
-<img title="Jira issue" src="images/screenshots/jira-issue.png">
+<img title="Telegram Notifications" src="images/screenshots/telegram_notifications.PNG">
 </p>
 
-## :shinto_shrine: Отчет в Telegram
-<p align="center">
-<img title="Telegram notification message" src="images/screenshots/telegram-notification.png">
-</p>
+## <img width="4%" title="Selenoid" src="images/logo/Selenoid.svg"> Пример запуска теста в Selenoid
 
-## :shinto_shrine: Видео примеры прохождения тестов
 > К каждому тесту в отчете прилагается видео. Одно из таких видео представлено ниже.
 <p align="center">
-  <img title="Selenoid Video" src="images/gif/test-run.gif">
+  <img title="Selenoid Video" src="images/gif/ezgif.com-gif-maker.gif">
 </p>
+
+:heart: <a target="_blank" href="https://qa.guru">qa.guru</a><br/>
+:blue_heart: <a target="_blank" href="https://t.me/qa_automation">t.me/qa_automation</a>
