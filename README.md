@@ -87,13 +87,15 @@ clean
 test
 -Dbrowser=${BROWSER}
 -Dsize=${SIZE}
+-Denviroment=${ENVIRONMENT}
+
 ```
 
 ### Параметры сборки
 
 > <code>BROWSER</code> – браузер, в котором будут выполняться тесты (_по умолчанию - <code>chrome</code>_).
 >
-> <code>BROWSER_SIZE</code> – размер окна браузера, в котором будут выполняться тесты (_по умолчанию - <code>1920x1080</code>_).
+> <code>SIZE</code> – размер окна браузера, в котором будут выполняться тесты (_по умолчанию - <code>1920x1080</code>_).
 >
 > <code>ENVIRONMENT</code> – версия окружения для отчёта в Telegram.
 >

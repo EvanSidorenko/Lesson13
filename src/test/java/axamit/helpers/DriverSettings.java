@@ -14,12 +14,12 @@ public class DriverSettings {
         if (Credentials.isRemoteWebDriver()) {
             String user = Credentials.config.user();
             String password = Credentials.config.password();
-            String remote = Credentials.config.remote();
+            String remoteURL = Credentials.config.remote();
             DesiredCapabilities capabilities = new DesiredCapabilities();
             capabilities.setCapability("enableVNC", true);
             capabilities.setCapability("enableVideo", true);
             Configuration.browserCapabilities = capabilities;
-            Configuration.remote = "https://" + user + ":" + password + "@" + remote;
+            Configuration.remote = "https://" + user + ":" + password + "@" + remoteURL;
         }
     }
 }
